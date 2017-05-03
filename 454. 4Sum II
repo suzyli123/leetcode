@@ -1,0 +1,19 @@
+class Solution(object):
+    def fourSumCount(self, A, B, C, D):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :type C: List[int]
+        :type D: List[int]
+        :rtype: int
+        """
+        d1 = collections.defaultdict(int)
+        ans = 0
+        for x in A:
+            for y in B:
+                d1[x+y] += 1
+        for x in C:
+            for y in D:
+                ans += d1[-x-y]
+        return ans
+                    
