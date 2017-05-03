@@ -1,0 +1,29 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        l = {'(':')', '{':'}', '[':']'}
+        q = []
+        i= 0
+        for x in s:
+            if(i == 0):
+                q.append(x)
+                i += 1
+            else:
+                temp = q[i-1]
+                if temp in l.keys():
+                    if(x == l[temp]):
+                        q.pop()
+                        i -= 1
+                    else:
+                        q.append(x)
+                        i += 1
+                else:
+                    q.append(x)
+                    i += 1
+        if(len(q) != 0):
+            return False
+        else:
+            return True
