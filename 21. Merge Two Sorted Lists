@@ -1,0 +1,93 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        if(l1 == None):
+            return l2
+        if(l2 == None):
+            return l1
+        head = ListNode(0)
+        if(l1.val <= l2.val):
+            head.val = l1.val
+            l1 = l1.next
+        else:
+            head.val = l2.val
+            l2 = l2.next
+        head.next = None
+        temp = head
+        while(l1 != None and l2 != None):
+            if(l1.val <= l2.val):
+                now = ListNode(l1.val)
+                now.next = None
+                temp.next = now
+                temp = temp.next
+                l1 = l1.next
+            else:
+                now = ListNode(l2.val)
+                now.next = None
+                temp.next = now
+                temp = temp.next
+                l2 = l2.next
+        while(l1 != None):
+            now = ListNode(l1.val)
+            now.next = None
+            temp.next = now
+            temp = temp.next
+            l1 = l1.next
+        while(l2 != None):
+            now = ListNode(l2.val)
+            now.next = None
+            temp.next = now
+            temp = temp.next
+            l2 = l2.next
+        return head
+        
+        
+ # Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        if(l1 == None):
+            return l2
+        if(l2 == None):
+            return l1
+        before = l1
+        head = l1
+        while(head != None and l2 != None):
+            if(head.val <= l2.val):
+                before = head
+                head = head.next
+            else:
+                if(before == head):
+                    now = l2
+                    l2 = l2.next
+                    now.next = head
+                    before = now
+                    l1 = now
+                else:
+                    now = l2
+                    l2 = l2.next
+                    before.next = now
+                    now.next = head
+                    before = now
+        if(l2 != None):
+            before.next = l2
+        return l1
