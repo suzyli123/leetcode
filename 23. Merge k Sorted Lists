@@ -1,0 +1,28 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+import Queue
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        q = Queue.PriorityQueue()
+        head = None
+        temp = None
+        for x in lists:
+            if(x):
+                q.put((x.val, x))
+        while(not q.empty()):
+            if(head == None):
+                head = q.get()[1]
+                temp = head
+            else:
+                temp.next = q.get()[1]
+                temp = temp.next
+            if(temp.next):
+                q.put((temp.next.val, temp.next))
+        return head
