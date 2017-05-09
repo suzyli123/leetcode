@@ -1,0 +1,21 @@
+class Solution(object):
+    def nthUglyNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        nums = [1]
+        i2, i3, i5 = 0, 0, 0
+        n -= 1
+        while(n > 0):
+            u2, u3, u5 = nums[i2]*2, nums[i3]*3, nums[i5]*5
+            umin = min(u2, u3, u5)
+            if(umin == u2):
+                i2 += 1
+            if(umin == u3):
+                i3 += 1
+            if(umin == u5):
+                i5 += 1
+            nums.append(umin)
+            n -= 1
+        return nums[len(nums)-1]
