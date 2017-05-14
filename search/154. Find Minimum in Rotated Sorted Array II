@@ -1,0 +1,22 @@
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left = 0
+        right = len(nums) - 1
+        while(left < right):
+            if(nums[left] < nums[right]):
+                return nums[left]
+            mid = int((left + right)/2)
+            print(left, right, mid)
+            while(nums[left] == nums[mid] and left < right):
+                left += 1
+            if(left >= mid):
+                continue
+            if(nums[mid] > nums[right]):
+                left = mid + 1
+            elif(nums[mid] <= nums[left]):
+                right = mid
+        return nums[left]
