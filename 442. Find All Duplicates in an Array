@@ -1,0 +1,31 @@
+#inplace hash
+
+class Solution(object):
+    def findDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ans = []
+        for x in nums:
+            temp = abs(x)
+            if(nums[temp-1] < 0):
+               ans.append(temp)
+            else:
+                nums[temp-1] = -nums[temp-1]
+        return ans
+        
+class Solution(object):
+    def findDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ans = []
+        d = {}
+        for x in nums:
+            if(d.get(x) == 0):
+                ans.append(x)
+            else:
+                d[x] = 0
+        return ans 
