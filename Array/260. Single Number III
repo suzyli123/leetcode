@@ -1,0 +1,11 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        temp = list(set(nums))
+        temp = temp + temp
+        for x in nums:
+            temp.remove(x)
+        return temp
