@@ -1,0 +1,17 @@
+import collections
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        d = collections.defaultdict(int)
+        for x in s:
+            d[x] += 1
+        for x in t:
+            if(d[x] == 0):
+                return x
+            else:
+                d[x] -= 1
+        return ""
