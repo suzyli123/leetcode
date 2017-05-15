@@ -1,0 +1,32 @@
+#solution1 HASH
+#solution2 caculation
+
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        for i in range(n):
+            temp = abs(nums[i])%(n+1)
+            if(temp != n):
+                nums[temp] = -(n+1) if nums[temp] == 0 else -nums[temp]
+        for i in range(n):
+            if(nums[i] >= 0):
+                return i
+        return n
+
+
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        sum = ((n+1)*n)/2
+        temp = 0
+        for x in nums:
+            temp += x
+        return sum-temp
