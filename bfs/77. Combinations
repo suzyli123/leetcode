@@ -1,0 +1,19 @@
+from itertools import combinations
+class Solution(object):
+    def combine(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+#        ans = []
+#        self.dfs(ans, [], 1, k, n)
+#        return ans
+        
+#    def dfs(self, ans, num, start, k, n):
+#        if(k == 0):
+#            ans.append(num[:])
+#        for x in range(start, n+1):
+#            self.dfs(ans, num+[x], x+1, k-1, n)
+
+        return list(combinations(range(1, n+1), k))
