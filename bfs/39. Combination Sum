@@ -1,0 +1,25 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        self.ans = []
+        candidates.sort()
+        self.dfs(candidates, [], target, 0)
+        return self.ans
+        
+    def dfs(self, candidates, num, target, last):
+        if(target == 0):
+            self.ans.append(num[:])
+        if(target < candidates[0]):
+            return
+        for x in candidates:
+            if(x > target):
+                return
+            if(x < last):
+                continue
+            num.append(x)
+            self.dfs(candidates, num, target-x, x)
+            num.pop()
