@@ -1,0 +1,39 @@
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        ans = 0
+        length = len(height)
+        if(length == 0 or length == 1):
+            return ans
+        head = 0
+        while(head < length-1):
+            while(height[head]<=height[head+1]):
+                head += 1
+                if(head == length-1):
+                    return ans
+            tail, tail_max = 0, length-1
+            temp_max = height[length-1]
+            print("head",head)
+            for i in range(length-1, head, -1):
+                if(height[i] >= height[head]):
+                    tail = i
+                elif(height[i] >= temp_max):
+                    temp_max = height[i]
+                    tail_max = i
+            if(tail != 0):
+                print("a",head, tail)
+                h = min(height[head], height[tail])
+                for i in range(head+1, tail):
+                    ans += h-height[i] if h-height[i]>0 else 0
+                head = tail
+            else:
+                print("b",head, tail_max)
+                h = temp_max
+                for i in range(head+1, tail_max):
+                    ans += h - height[i] if h-height[i]>0 else 0
+                head = tail_max
+        return ans
+                
