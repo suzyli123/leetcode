@@ -1,0 +1,32 @@
+#超时
+class Solution(object):
+    def find(self, now, k, begin, length, prices):
+        temp = 0
+        minp = prices[begin]
+        ans = 0
+        for i in range(begin, length):
+            if(minp < prices[i]):
+                temp = prices[i] - minp
+                if(now < k and i < length-2):
+                    print("thins line")
+                    ans = max(ans, temp + self.find(now+1, k, i+1, length, prices))
+                else:
+                    print(temp)
+                    ans = max(ans, temp)
+            else:
+                minp = prices[i]
+        print(begin, ans)
+        return ans
+        
+    def maxProfit(self, k, prices):
+        """
+        :type k: int
+        :type prices: List[int]
+        :rtype: int
+        """
+        length = len(prices)
+        if(length < 2 or k == 0):
+            return 0
+        return self.find(1, k, 0, length, prices)
+        
+        
