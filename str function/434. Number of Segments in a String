@@ -1,0 +1,34 @@
+class Solution(object):
+    def countSegments(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        length = len(s)
+        if(length == 0):
+            return 0
+        count = 0
+        begin = 0
+        while(s[begin] == ' '):
+            begin += 1
+            if(begin == length):
+                break
+        while(begin < length):
+            print('a', begin, s[begin])
+            while(s[begin] != ' '):
+                begin += 1
+                if(begin >= length):
+                    break
+            count += 1
+            if(begin >= length):
+                return count
+            print('b', begin, s[begin])
+            while(s[begin] == ' '):
+                begin += 1
+                if(begin >= length):
+                    break
+            if(begin >= length):
+                return count
+            print('c', begin, s[begin])
+        return count
+            
