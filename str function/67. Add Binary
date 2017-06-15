@@ -1,0 +1,94 @@
+#string only
+
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        ans = ""
+        la = len(a) - 1
+        lb = len(b) - 1
+        further = 0
+        while(la >= 0 and lb >= 0):
+            if(further == 1):
+                if(a[la] == '1' and b[lb] == '1'):
+                    ans = '1' + ans
+                    further = 1
+                elif(a[la] == '1' or b[lb] == '1'):
+                    ans = '0' + ans
+                    further = 1
+                else:
+                    ans = '1' + ans
+                    further = 0
+            else:
+                if(a[la] == '1' and b[lb] == '1'):
+                    ans = '0' + ans
+                    further = 1
+                elif(a[la] == '1' or b[lb] == '1'):
+                    ans = '1' + ans
+                    further = 0
+                else:
+                    ans = '0' + ans
+                    further = 0
+            la -= 1
+            lb -= 1
+        while(la >=0):
+            if(further == 1 and a[la] == '1'):
+                ans = '0' + ans
+                further = 1
+            elif(further == 1 or a[la] == '1'):
+                ans = '1' + ans
+                further = 0
+            else:
+                ans = '0' + ans
+                further = 0
+            la -= 1
+        while(lb >=0):
+            if(further == 1 and b[lb] == '1'):
+                ans = '0' + ans
+                further = 1
+            elif(further == 1 or b[lb] == '1'):
+                ans = '1' + ans
+                further = 0
+            else:
+                ans = '0' + ans
+                further = 0        
+            lb -= 1
+        if(further == 1):
+            ans = '1' + ans
+        return ans
+       
+# string to int to string
+
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        ans = ""
+        la = len(a) - 1
+        lb = len(b) - 1
+        further = 0
+        while(la >= 0 and lb >= 0):
+            temp = further + int(a[la]) + int(b[lb])
+            further = temp//2
+            ans = str(temp%2) + ans
+            la -= 1
+            lb -= 1
+        while(la >= 0):
+            temp = further + int(a[la])
+            further = temp//2
+            ans = str(temp%2) + ans
+            la -= 1
+        while(lb >= 0):
+            temp = further + int(b[lb])
+            further = temp//2
+            ans = str(temp%2) + ans
+            lb -= 1
+        if(further == 1):
+            ans = '1' + ans
+        return ans
