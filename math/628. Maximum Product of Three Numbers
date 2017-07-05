@@ -1,0 +1,16 @@
+class Solution(object):
+    def maximumProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        nums = sorted(nums)
+        ans = nums[n-1]*nums[n-2]*nums[n-3]
+        if(min(nums) < 0):
+            ans = nums[0]*nums[1]*nums[2] if(ans < nums[0]*nums[1]*nums[2]) else ans
+            ans = nums[0]*nums[1]*nums[n-1] if(ans < nums[0]*nums[1]*nums[n-1]) else ans
+            ans = nums[0]*nums[n-2]*nums[n-1] if(ans < nums[0]*nums[n-2]*nums[n-1]) else ans
+        if(ans < 0 and 0 in nums):
+            ans = 0
+        return ans
