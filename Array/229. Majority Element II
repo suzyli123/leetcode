@@ -1,0 +1,21 @@
+import collections
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        length = len(nums)
+        line = length//3 + 1
+        ans = []
+        if(length == 0):
+            return ans
+        d = collections.defaultdict(int)
+        for x in nums:
+            d[x] += 1
+        for x in d:
+            if(d[x] >= line):
+                ans.append(x)
+        return ans
+                
+        
