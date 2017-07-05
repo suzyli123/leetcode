@@ -1,0 +1,40 @@
+class Solution(object):
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        if(dividend < 0 and divisor < 0):
+            res = 0
+        elif(dividend < 0 or divisor < 0):
+            res = 1
+        else:
+            res = 0
+        a = abs(dividend)
+        b = abs(divisor)
+        max_int = 2**31 - 1
+        print(max_int)
+        ans = 0
+        while(a >= b):
+            c = b
+            i = 0
+            while(c <= a):
+                a -= c
+                ans += 1<<i
+                i += 1
+                c  = c<<1
+        if(res):
+            if(ans > max_int+1):
+                return max_int
+            else:
+                return -ans
+        else:
+            if(ans > max_int):
+                return max_int
+            else:
+                return ans
+                
+            
+            
+            
