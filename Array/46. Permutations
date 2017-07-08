@@ -1,0 +1,21 @@
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ans = []
+        length = len(nums)
+        def cal(now, l):
+            if(l == length):
+                ans.append(now)
+            else:
+                for x in nums:
+                    if(now != []): 
+                        if(x not in now):
+                            cal(now + [x], l + 1)
+                    else:
+                        cal(now + [x], l + 1)
+        cal([], 0)
+        return ans
+        
