@@ -1,0 +1,44 @@
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        
+        count = 0
+        if(matrix == []):
+            return []
+        m = len(matrix)#3
+        n = len(matrix[0])#4
+        max_count = min(m, n)//2
+        print("max", max_count)
+        print("m", m, 'n', n)
+        ans = []
+        
+        while(count < max_count):
+            for i in range(count, n-count-1):
+                #print("add1", matrix[count][i])
+                ans.append(matrix[count][i])
+            for i in range(count, m-count-1):
+                #print("add2", matrix[i][n-count-1])
+                ans.append(matrix[i][n-count-1])
+            for i in range(n-count-1, count, -1):
+                #print("add3", matrix[m-count-1][i])
+                ans.append(matrix[m-count-1][i])
+            for i in range(m-count-1, count, -1):
+                #print("add4", matrix[i][count])
+                ans.append(matrix[i][count])
+            count += 1
+        if(m == n):
+            if(m%2 == 1):
+                ans.append(matrix[m//2][m//2])
+        elif(m < n):
+            if(m%2 == 1):
+                for i in range(count, n-count):
+                    ans.append(matrix[m//2][i])
+        else:
+            if(n%2 == 1):
+                for i in range(count, m-count):
+                    ans.append(matrix[i][n//2])
+        return ans
+            
