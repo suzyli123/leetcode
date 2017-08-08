@@ -1,0 +1,36 @@
+#二分查找
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size();
+        if(m == 0)
+            return false;
+        int n = matrix[0].size();
+        if(m == 0 || n == 0)
+            return false;
+        int left = 0, right = m-1, mid, res0;
+        while(left <= right){
+            mid = (left + right)/2;
+            if(target == matrix[mid][0])
+                return true;
+            else if(target > matrix[mid][0])
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        res0 = left != 0? left - 1 : left;
+        left = 0;
+        right = n-1;
+        while(left <= right){
+            mid = (left + right)/2;
+            if(target == matrix[res0][mid])
+                return true;
+            else if(target > matrix[res0][mid])
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return false;
+        
+    }
+};
