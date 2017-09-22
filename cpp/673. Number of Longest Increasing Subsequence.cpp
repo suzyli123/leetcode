@@ -1,19 +1,28 @@
 class Solution {
 public:
-    int findLengthOfLCIS(vector<int>& nums) {
-        int len = nums.size();
+    int findNumberOfLIS(vector<int>& nums) {
+        int len = nums.size(), ans = 0;
         if(len < 2)
             return len;
-        int ans = 1, temp = 1;
-        for(int i=1; i<len; i++){
-            if(nums[i] > nums[i-1]){
-                temp ++;
-                ans = max(ans, temp);
+        vector<int> dp(len, 1);
+        vector<int> count(len, 1);
+        for(int i=0; i<len; i++){
+            for(int j=0; j<i; j++){
+                if(nums[j] < nums[i] && dp[i]<dp[j]+1){
+                    dp[i] = dp[j]+1;
+                    count[i] = count[j];
+                }
+                else if(nums[j] < nums[i] && dp[i] == dp[j]+1)
+                    count[i] += count[j];
+                    
             }
-            else{
-                temp = 1;
-            }
+            ans = max(ans, dp[i]);
         }
-        return ans;
+        int res = 0;
+        for(int i=0; i<len; i++){
+            if(dp[i] == ans)
+                res += count[i];
+        }
+        return res;
     }
 };
